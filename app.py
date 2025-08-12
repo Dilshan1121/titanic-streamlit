@@ -13,7 +13,7 @@ def load_model():
 
 @st.cache_data
 def load_data():
-    return pd.read_csv("data/titanic.csv")
+    return pd.read_csv("data/Titanic-Dataset.csv")
 
 model = load_model()
 df = load_data()
