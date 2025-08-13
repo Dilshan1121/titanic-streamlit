@@ -16,22 +16,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.markdown(
-    """
-    <style>
-    :root {
-        --background-color: white;
-        --text-color: black;
-    }
-    .stApp {
-        background-color: white;
-        color: black;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # ---------------------------
 # ADD BACKGROUND STYLE
 # ---------------------------
@@ -81,14 +65,10 @@ def load_local_image(image_filename):
         return Image.open(image_path)
     return None
 
-# Sidebar image with debug info
-image_path = os.path.join("images", "titanic_sidebar.jpg")
-st.sidebar.write(f"Looking for image at: {os.path.abspath(image_path)}")
-if os.path.exists(image_path):
-    st.sidebar.image(image_path, use_container_width=True)
-else:
-    st.sidebar.error("Sidebar image not found.")
-
+# Sidebar image
+sidebar_img = load_local_image("titanic_sidebar.jpg")
+if sidebar_img:
+    st.sidebar.image(sidebar_img, use_container_width=True)
 
 # ---------------------------
 # SIDEBAR NAVIGATION
