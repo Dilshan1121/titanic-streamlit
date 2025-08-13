@@ -53,8 +53,8 @@ This app uses the classic Titanic dataset from [Kaggle](https://www.kaggle.com/c
 2. Set up virtual environment and install dependencies:
     ```bash
     python -m venv venv
-    source venv/bin/activate      # macOS / Linux
-    venv\Scripts\activate         # Windows
+    source venv/bin/activate      
+    venv\Scripts\activate         
     pip install -r requirements.txt
     ```
 
