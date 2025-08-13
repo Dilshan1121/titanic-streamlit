@@ -85,7 +85,7 @@ def animated_metric(label, value, duration=1):
 # ---------------------------
 # SIDEBAR NAVIGATION
 # ---------------------------
-st.sidebar.image("https://upload.wikimedia.org/wikipedia/commons/6/6e/RMS_Titanic_3.jpg", use_column_width=True)
+st.sidebar.image("https://upload.wikimedia.org/wikipedia/commons/6/6e/RMS_Titanic_3.jpg", use_container_width=True)
 st.sidebar.title("📌 Navigation")
 page = st.sidebar.radio("Select Page", ["Home", "Data Exploration", "Visualizations", "Prediction", "Model Performance"])
 
