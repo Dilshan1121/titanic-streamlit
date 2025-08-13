@@ -82,11 +82,6 @@ page = st.sidebar.radio("Select Page", ["Home", "Data Exploration", "Visualizati
 if page == "Home":
     st.title("🚢 Titanic Survival Prediction App")
 
-    # Header image
-    header_img = load_local_image("titanic_header.jpg")
-    if header_img:
-        st.image(header_img, use_container_width=True)
-
     st.markdown("""
         Welcome to the Titanic Survival Prediction App!  
         Use the navigation menu on the left to explore the dataset, view visualizations, make predictions, and check model performance.
