@@ -4,20 +4,16 @@ import joblib
 import json
 import plotly.express as px
 import os
-import time  # for animation
+import time  
 
-# ---------------------------
-# PAGE CONFIG
-# ---------------------------
+
 st.set_page_config(
     page_title="🚢 Titanic Survival Predictor",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# ---------------------------
-# CUSTOM CSS + BACKGROUND
-# ---------------------------
+
 def add_bg_image():
     st.markdown(
         f"""
@@ -59,9 +55,7 @@ def add_bg_image():
 
 add_bg_image()
 
-# ---------------------------
-# LOAD MODEL & DATA
-# ---------------------------
+
 @st.cache_resource
 def load_model():
     return joblib.load("model.pkl")
@@ -73,25 +67,19 @@ def load_data():
 model = load_model()
 df = load_data()
 
-# ---------------------------
-# ANIMATED METRIC FUNCTION
-# ---------------------------
+
 def animated_metric(label, value, duration=1):
     placeholder = st.empty()
     for i in range(int(value) + 1):
         placeholder.metric(label, i)
         time.sleep(duration / value if value != 0 else 0)
 
-# ---------------------------
-# SIDEBAR NAVIGATION
-# ---------------------------
+
 st.sidebar.image("https://upload.wikimedia.org/wikipedia/commons/6/6e/RMS_Titanic_3.jpg", use_container_width=True)
 st.sidebar.title("📌 Navigation")
 page = st.sidebar.radio("Select Page", ["Home", "Data Exploration", "Visualizations", "Prediction", "Model Performance"])
 
-# ---------------------------
-# HOME
-# ---------------------------
+
 if page == "Home":
     st.title("🚢 Titanic Survival Prediction App")
     st.markdown("""
@@ -101,9 +89,7 @@ if page == "Home":
     st.subheader("🔍 Dataset Preview")
     st.dataframe(df.head())
 
-# ---------------------------
-# DATA EXPLORATION
-# ---------------------------
+
 elif page == "Data Exploration":
     st.header("📊 Dataset Overview")
     col1, col2, col3 = st.columns(3)
@@ -131,9 +117,7 @@ elif page == "Data Exploration":
         mime='text/csv'
     )
 
-# ---------------------------
-# VISUALIZATIONS
-# ---------------------------
+
 elif page == "Visualizations":
     st.header("📈 Visual Insights")
     col1, col2 = st.columns(2)
@@ -148,9 +132,7 @@ elif page == "Visualizations":
     fig3 = px.box(df, x='Pclass', y='Fare', points="outliers", title="Fare by Passenger Class", color='Pclass')
     st.plotly_chart(fig3, use_container_width=True)
 
-# ---------------------------
-# PREDICTION
-# ---------------------------
+
 elif page == "Prediction":
     st.header("🎯 Make a Prediction")
     with st.form("prediction_form"):
@@ -187,9 +169,7 @@ elif page == "Prediction":
         else:
             st.markdown(f"<div class='prediction-fail'>❌ Passenger Did NOT Survive (Survival Probability: {proba:.2f})</div>", unsafe_allow_html=True)
 
-# ---------------------------
-# MODEL PERFORMANCE
-# ---------------------------
+
 elif page == "Model Performance":
     st.header("📊 Model Performance")
     if os.path.exists("artifacts/metrics.json"):
